@@ -2,6 +2,7 @@
 
 from __future__ import print_function
 import os
+import subprocess
 import azure.storage.blob
 import pypeliner
 
@@ -50,6 +51,19 @@ def upload_blob(azure_storage_account_name,
                                              blob_name=blob_name,
                                              file_path=input_file_path)
 
+def get_mitochondrial_data(bam_file,
+                           mitochondrial_bam_file):
+    """Extracts mitochondrial data from a BAM file."""
+    # Generate index file
+    subprocess.call(['samtools', 'index', bam_file])
+
+    # Extract the mitochondrial data
+    subprocess.call(['samtools', 'view', '-b', bam_file, 'MT',
+                     '>', mitochondrial_bam_file])
+
+    # Clean up the index file
+    os.remove(bam_file + '.bai')
+
 def create_bam_to_mt_bam_pipeline(source_account_name,
                                   source_account_key,
                                   source_storage_container_name,
@@ -81,13 +95,9 @@ def create_bam_to_mt_bam_pipeline(source_account_name,
     # Get the mitochondrial data
     workflow.commandline(
             name='bam_to_mitochondrial_bam',
+            func=get_mitochondrial_data,
             args=(
-                'samtools',
-                'view',
-                '-b',
                 pypeliner.managed.TempInputFile(input_blob_name),
-                'MT',
-                '>',
                 pypeliner.managed.TempOutputFile(
                     rename_input_to_output(input_blob_name)),
             ),
