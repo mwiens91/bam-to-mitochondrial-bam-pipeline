@@ -93,7 +93,7 @@ def create_bam_to_mt_bam_pipeline(source_account_name,
     )
 
     # Get the mitochondrial data
-    workflow.commandline(
+    workflow.transform(
             name='bam_to_mitochondrial_bam',
             func=get_mitochondrial_data,
             args=(
