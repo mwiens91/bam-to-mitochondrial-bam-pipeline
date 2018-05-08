@@ -1,4 +1,4 @@
-"""The actual pipeline for bam2MTbam pipeline."""
+"""The actual pipeline for bam-to-mt-bam-pipeline."""
 
 from __future__ import print_function
 import os
@@ -42,14 +42,14 @@ def upload_blob(azure_storage_account_name,
                                              blob_name=blob_name,
                                              file_path=input_file_path)
 
-def create_bam2MTbam_pipeline(source_account_name,
-                              source_account_key,
-                              source_storage_container_name,
-                              destination_account_name,
-                              destination_account_key,
-                              destination_storage_container_name,
-                              input_blob_name,
-                              output_blob_name,):
+def create_bam_to_mt_bam_pipeline(source_account_name,
+                                  source_account_key,
+                                  source_storage_container_name,
+                                  destination_account_name,
+                                  destination_account_key,
+                                  destination_storage_container_name,
+                                  input_blob_name,
+                                  output_blob_name,):
     """Creates the main pipeline.
 
     Creates a pipeline to download a cell's BAM files and extract their
