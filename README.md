@@ -1,9 +1,10 @@
 # bam2MTbam-pipeline
 
-This is a pipeline to fetch some BAM files from a Microsoft Azure Blob
+This is a script to fetch some BAM files from a Microsoft Azure Blob
 Storage service container, and then to extract the parts relevant to
-mitochondrial DNA and put them in (smaller) BAM files using Samtools
-(http://www.htslib.org/).
+mitochondrial DNA and put them in smaller BAM files using Samtools
+(http://www.htslib.org/), and then upload *those* files to another (but
+possibly the same) Blob Storage container.
 
 ## Usage
 

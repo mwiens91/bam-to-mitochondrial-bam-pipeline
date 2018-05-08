@@ -1,15 +1,22 @@
 # This is a settings file for the bam2MTbam pypeline script. It's in
 # YAML.
 
+# Source details
+
 # Information to connect to an Azure storage account
-AZURE_STORAGE_ACCOUNT_NAME: 'account'
-AZURE_STORAGE_ACCOUNT_KEY: 'key'
+AZURE_SOURCE_STORAGE_ACCOUNT_NAME: 'source_account'
+AZURE_SOURCE_STORAGE_ACCOUNT_KEY: 'source_key'
 
 # Where to find the chips within the Azure storage container
-STORAGE_CONTAINER_NAME: 'container_name'
-CHIP_PATH_PREFIX: 'path/to/chip_ids'
+SOURCE_STORAGE_CONTAINER_NAME: 'source_container_name'
+SOURCE_CHIP_PATH_PREFIX: 'path/to/chip_ids'
 
 # The IDs of the chips
-CHIP_IDS:
-    - 'ABCD'
-    - 'BCDE'
+SOURCE_CHIP_IDS:
+    - 'ABCDE'
+    - 'BCDEF'
+
+# Destination details
+AZURE_DESTINATION_STORAGE_ACCOUNT_NAME: 'destination_account'
+AZURE_DESTINATION_STORAGE_ACCOUNT_KEY: 'desination_key'
+DESTINATION_STORAGE_CONTAINER_NAME: 'destination_container_name'  # Create this if it doesn't already exist!
