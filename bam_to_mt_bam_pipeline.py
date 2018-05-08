@@ -6,6 +6,14 @@ import azure.storage.blob
 import pypeliner
 
 
+def rename_input_to_output(name):
+    """Renames the input file to an output file.
+
+    Specifically, this adds '_MT' to the filename before the .bam
+    extension.
+    """
+    return name[:-4] + '_MT.bam'
+
 def download_blob(azure_storage_account_name,
                   azure_storage_account_key,
                   storage_container_name,
@@ -48,8 +56,7 @@ def create_bam_to_mt_bam_pipeline(source_account_name,
                                   destination_account_name,
                                   destination_account_key,
                                   destination_storage_container_name,
-                                  input_blob_name,
-                                  output_blob_name,):
+                                  input_blob_name):
     """Creates the main pipeline.
 
     Creates a pipeline to download a cell's BAM files and extract their
@@ -81,7 +88,8 @@ def create_bam_to_mt_bam_pipeline(source_account_name,
                 pypeliner.managed.TempInputFile(input_blob_name),
                 'MT',
                 '>',
-                pypeliner.managed.TempOutputFile(output_blob_name),
+                pypeliner.managed.TempOutputFile(
+                    rename_input_to_output(input_blob_name)),
             ),
     )
 
@@ -93,8 +101,9 @@ def create_bam_to_mt_bam_pipeline(source_account_name,
                 destination_account_name,
                 destination_account_key,
                 destination_storage_container_name,
-                pypeliner.managed.TempInputFile(output_blob_name),
-                output_blob_name,
+                pypeliner.managed.TempInputFile(
+                    rename_input_to_output(input_blob_name)),
+                rename_input_to_output(input_blob_name),
             ),
     )
 

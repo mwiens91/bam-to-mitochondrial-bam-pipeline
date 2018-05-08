@@ -47,6 +47,9 @@ def main():
                 # Add the path of the blob
                 blob_list.append(blob.name)
 
+    # Make the blob list a dict to use for the pipeline
+    blob_dict = {i: blob_list[i] for i in range(len(blob_list))}
+
     # Now send all of the blobs down the pipeline
     pyp = pypeliner.app.Pypeline(modules=(bam_to_mt_bam_pipeline,),
                                  config={'sentinal_only': True,
@@ -54,30 +57,30 @@ def main():
                                          'nocleanup': True,
                                          'submit': 'local'})
 
-    for blobname in blob_list:
-        # Add '_MT' to the filename before the .bam extension
-        output_filename = blobname[:-4] + '_MT.bam'
+    # Make the workflow
+    workflow = pypeliner.workflow.Workflow()
 
-        # Create the workflow
-        thisworkflow = bam_to_mt_bam_pipeline.create_bam_to_mt_bam_pipeline(
-         source_account_name=
-            settings_dict['AZURE_SOURCE_STORAGE_ACCOUNT_NAME'],
-         source_account_key=
-            settings_dict['AZURE_SOURCE_STORAGE_ACCOUNT_KEY'],
-         source_storage_container_name=
-            settings_dict['SOURCE_STORAGE_CONTAINER_NAME'],
-         destination_account_name=
-            settings_dict['AZURE_DESTINATION_STORAGE_ACCOUNT_NAME'],
-         destination_account_key=
-            settings_dict['AZURE_DESTINATION_STORAGE_ACCOUNT_KEY'],
-         destination_storage_container_name=
-            settings_dict['DESTINATION_STORAGE_CONTAINER_NAME'],
-         input_blob_name=blobname,
-         output_blob_name=output_filename,)
+    # Set an object for parallelization
+    workflow.setobj(obj=pypeliner.managed.TempOutputObj('blobname', 'blob'),
+                    value=blob_dict)
 
-        # Run the workflow
-        pyp.run(thisworkflow)
+    workflow.subworkflow(
+            name='bam_to_mt_bam_pipeline',
+            func=bam_to_mt_bam_pipeline.create_bam_to_mt_bam_pipeline,
+            axes=('blob',),
+            args=(
+                settings_dict['AZURE_SOURCE_STORAGE_ACCOUNT_NAME'],
+                settings_dict['AZURE_SOURCE_STORAGE_ACCOUNT_KEY'],
+                settings_dict['SOURCE_STORAGE_CONTAINER_NAME'],
+                settings_dict['AZURE_DESTINATION_STORAGE_ACCOUNT_NAME'],
+                settings_dict['AZURE_DESTINATION_STORAGE_ACCOUNT_KEY'],
+                settings_dict['DESTINATION_STORAGE_CONTAINER_NAME'],
+                pypeliner.managed.TempInputObj('blobname', 'blob'),
+            )
+    )
 
+    # Run it
+    pyp.run(workflow)
 
 if __name__ == '__main__':
     # Run the program
