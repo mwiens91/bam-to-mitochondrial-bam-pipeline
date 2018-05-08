@@ -6,7 +6,7 @@ import sys
 import azure.storage.blob
 import pypeliner
 import yaml
-from bam_to_mt_bam_pipeline import create_bam_to_mt_bam_pipeline
+import bam_to_mt_bam_pipeline
 
 
 # Contains Azure info; path is relative to script directory
@@ -48,14 +48,16 @@ def main():
                 blob_list.append(blob.name)
 
     # Now send all of the blobs down the pipeline
-    pyp = pypeliner.app.Pypeline(modules=(), config=dict())
+    pyp = pypeliner.app.Pypeline(modules=(bam_to_mt_bam_pipeline,),
+                                 config={'sentinal_only': True,
+                                         'loglevel': 'DEBUG'})
 
     for blobname in blob_list:
         # Add '_MT' to the filename before the .bam extension
         output_filename = blobname[:-4] + '_MT.bam'
 
         # Create the workflow
-        thisworkflow = create_bam_to_mt_bam_pipeline(
+        thisworkflow = bam_to_mt_bam_pipeline.create_bam_to_mt_bam_pipeline(
          source_account_name=
             settings_dict['AZURE_SOURCE_STORAGE_ACCOUNT_NAME'],
          source_account_key=
