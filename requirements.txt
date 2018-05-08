@@ -9,13 +9,14 @@ cffi==1.11.5
 chardet==3.0.4
 cryptography==2.2.2
 decorator==4.3.0
+dill==0.2.7.1
 enum34==1.1.6
 futures==3.2.0
 idna==2.6
 ipaddress==1.0.22
 networkx==2.1
 pycparser==2.18
-pypeliner==0.4.1
+pypeliner==0.5.1+52.g66e5dd5
 python-dateutil==2.7.2
 PyYAML==3.12
 requests==2.18.4

@@ -50,7 +50,9 @@ def main():
     # Now send all of the blobs down the pipeline
     pyp = pypeliner.app.Pypeline(modules=(bam_to_mt_bam_pipeline,),
                                  config={'sentinal_only': True,
-                                         'loglevel': 'DEBUG'})
+                                         'loglevel': 'DEBUG',
+                                         'nocleanup': True,
+                                         'submit': 'local'})
 
     for blobname in blob_list:
         # Add '_MT' to the filename before the .bam extension
