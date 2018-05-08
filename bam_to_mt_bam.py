@@ -52,7 +52,7 @@ def main():
 
     for blobname in blob_list:
         # Add '_MT' to the filename before the .bam extension
-        output_filename = blobname[:-4] + 'MT.bam'
+        output_filename = blobname[:-4] + '_MT.bam'
 
         # Create the workflow
         thisworkflow = create_bam_to_mt_bam_pipeline(
