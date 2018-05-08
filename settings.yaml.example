@@ -1,5 +1,5 @@
-# This is a settings file for the bam2MTbam pypeline script. It's in
-# YAML.
+# This is a settings file for the bam-to-mitochondrial-bam-pipeline
+# program. It's written in YAML.
 
 # Source details
 

@@ -1,19 +1,19 @@
 #!/usr/bin/env python
-"""Main program for bam2MTbam pipeline."""
+"""Main script for bam-to-mitochondrial-bam-pipeline."""
 
 from __future__ import print_function
 import sys
 import azure.storage.blob
 import pypeliner
 import yaml
-from bam2MTbam_pipeline import create_bam2MTbam_pipeline
+from bam_to_mt_bam_pipeline import create_bam_to_mt_bam_pipeline
 
 
 # Contains Azure info; path is relative to script directory
 SETTINGS_FILE = 'settings.yaml'
 
 def main():
-    """The main program for bam2MTbam_pypeline."""
+    """The main program for bam-to-mitochondrial-bam-pipeline."""
     # Get Azure info from settings file
     try:
         with open('settings.yaml', 'r') as settingsfile:
@@ -55,7 +55,7 @@ def main():
         output_filename = blobname[:-4] + 'MT.bam'
 
         # Create the workflow
-        thisworkflow = create_bam2MTbam_pipeline(
+        thisworkflow = create_bam_to_mt_bam_pipeline(
          source_account_name=
             settings_dict['AZURE_SOURCE_STORAGE_ACCOUNT_NAME'],
          source_account_key=
