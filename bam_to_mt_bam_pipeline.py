@@ -93,7 +93,7 @@ def create_bam_to_mt_bam_pipeline(source_account_name,
                 destination_account_name,
                 destination_account_key,
                 destination_storage_container_name,
-                pypeliner.managed.TempOutputFile(output_blob_name),
+                pypeliner.managed.TempInputFile(output_blob_name),
                 output_blob_name,
             ),
     )
