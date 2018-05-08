@@ -48,7 +48,7 @@ def main():
                 blob_list.append(blob.name)
 
     # Now send all of the blobs down the pipeline
-    pyp = pypeliner.app.Pypeline()
+    pyp = pypeliner.app.Pypeline(modules=(), config=dict())
 
     for blobname in blob_list:
         # Add '_MT' to the filename before the .bam extension
@@ -72,7 +72,7 @@ def main():
          output_blob_name=output_filename,)
 
         # Run the workflow
-        pyp.sch.run(thisworkflow)
+        pyp.run(thisworkflow)
 
 
 if __name__ == '__main__':
