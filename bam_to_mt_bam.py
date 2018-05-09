@@ -54,8 +54,9 @@ def main():
     pyp = pypeliner.app.Pypeline(modules=(bam_to_mt_bam_pipeline,),
                                  config={'sentinal_only': True,
                                          'loglevel': 'DEBUG',
-                                         'nocleanup': True,
-                                         'submit': 'local'})
+                                         'nocleanup': False,
+                                         'submit': 'local',
+                                         'maxjobs': 64 * 2})
 
     # Make the workflow
     workflow = pypeliner.workflow.Workflow()
