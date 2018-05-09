@@ -16,7 +16,7 @@ This is a script to
 (http://www.htslib.org/).
 
 The version of `pypeliner` on `pip` is likely outdated, so I recommend
-[installing the latest stable version from the
+[installing the latest stable version from the Pypeliner
 respository](https://pypeliner.readthedocs.io/en/latest/installation.html).
 
 Once you've done that run the main script with `./bam2MTbam.py`.
