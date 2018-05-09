@@ -55,11 +55,11 @@ def get_mitochondrial_data(bam_file,
                            mitochondrial_bam_file):
     """Extracts mitochondrial data from a BAM file."""
     # Generate index file
-    subprocess.check_call(['samtools', 'index', bam_file])
+    subprocess.check_call("samtools index " +  bam_file, shell=True)
 
     # Extract the mitochondrial data
-    subprocess.check_call(['samtools', 'view', '-b', bam_file, 'MT',
-                     '>', mitochondrial_bam_file])
+    subprocess.check_call(("samtools view -b " + bam_file
+                           + " MT > " +  mitochondrial_bam_file), shell=True)
 
     # Clean up the index file
     os.remove(bam_file + '.bai')
