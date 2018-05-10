@@ -51,7 +51,11 @@ def main():
                     + '/'
                     +  cell_id)))
 
-        # Go through all files in the blob
+        # Extract the desination blob names
+        destination_blobs_for_this_cell = (
+            [blob.name for blob in destination_blobs_for_this_cell])
+
+        # Go through all the source blobs for each cell
         for blob in block_blob_service_source.list_blobs(
                 container_name=settings_dict['SOURCE_STORAGE_CONTAINER_NAME'],
                 prefix=(settings_dict['SOURCE_CHIP_PATH_PREFIX']
