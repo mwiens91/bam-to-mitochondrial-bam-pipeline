@@ -11,6 +11,7 @@ import bam_to_mt_bam_pipeline
 
 # Contains Azure info; path is relative to script directory
 SETTINGS_FILE = 'settings.yaml'
+NUM_CORES = 64
 
 def main():
     """The main program for bam-to-mitochondrial-bam-pipeline."""
@@ -73,7 +74,7 @@ def main():
                                          'loglevel': 'DEBUG',
                                          'nocleanup': False,
                                          'submit': 'local',
-                                         'maxjobs': 64 * 2})
+                                         'maxjobs': NUM_CORES * 2})
 
     # Make the workflow
     workflow = pypeliner.workflow.Workflow()
