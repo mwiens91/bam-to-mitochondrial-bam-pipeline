@@ -78,7 +78,7 @@ def main():
                                          'loglevel': 'DEBUG',
                                          'nocleanup': False,
                                          'submit': 'local',
-                                         'maxjobs': NUM_CORES * 2})
+                                         'maxjobs': NUM_CORES})
 
     # Make the workflow
     workflow = pypeliner.workflow.Workflow()
