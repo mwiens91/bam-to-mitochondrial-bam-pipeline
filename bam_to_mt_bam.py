@@ -70,7 +70,8 @@ def main():
                 blob_list.append(blob.name)
 
     # Make the blob list a dict to use for the pipeline
-    blob_dict = {blob_list[i]: blob_list[i] for i in range(len(blob_list))}
+    num_blobs = len(blob_list)
+    blob_dict = {blob_list[i]: blob_list[i] for i in range(num_blobs)}
 
     # Now send all of the blobs down the pipeline
     pyp = pypeliner.app.Pypeline(modules=(bam_to_mt_bam_pipeline,),
@@ -101,6 +102,7 @@ def main():
     )
 
     # Run it
+    print("Starting processing on %s files." % num_blobs)
     pyp.run(workflow)
 
 if __name__ == '__main__':
