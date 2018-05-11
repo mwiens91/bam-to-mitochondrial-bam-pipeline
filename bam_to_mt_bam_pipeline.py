@@ -35,7 +35,8 @@ def upload_blob(azure_storage_account_name,
                 azure_storage_account_key,
                 storage_container_name,
                 input_file_name,
-                blob_name,):
+                blob_name,
+                confirm_file_path,):
     """Uploads a file to an Azure blob."""
     # Gets the absolute path of the input file. I think this is required
     # by the Azure Storage Python library.
@@ -50,6 +51,10 @@ def upload_blob(azure_storage_account_name,
     block_blob_service.create_blob_from_path(container_name=storage_container_name,
                                              blob_name=blob_name,
                                              file_path=input_file_path)
+
+    # Write to a file that the job is done
+    with open(confirm_file_path, 'w') as f:
+        f.write("DONE!")
 
 def get_mitochondrial_data(bam_file,
                            mitochondrial_bam_file):
@@ -79,6 +84,11 @@ def create_bam_to_mt_bam_pipeline(source_account_name,
     # Create the main workflow
     workflow = pypeliner.workflow.Workflow()
 
+    # This is an object needed to use Pypeliner non-sentinal mode, which
+    # is based on timestamps
+    workflow.setobj(obj=pypeliner.managed.TempOutputObj('blob_name_obj'),
+                    value=input_blob_name)
+
     # Download the blob
     workflow.transform(
             name='download_blob',
@@ -88,7 +98,7 @@ def create_bam_to_mt_bam_pipeline(source_account_name,
                 source_account_key,
                 source_storage_container_name,
                 pypeliner.managed.TempOutputFile(input_blob_name),
-                input_blob_name,
+                pypeliner.managed.TempOutputObj('blob_name_holder'),
             ),
             ctx={'num_retry': 10},
     )
@@ -115,6 +125,7 @@ def create_bam_to_mt_bam_pipeline(source_account_name,
                 pypeliner.managed.TempInputFile(
                     rename_input_to_output(input_blob_name)),
                 rename_input_to_output(input_blob_name),
+                pypeliner.managed.TempOutputFile('confirm_job_log')
             ),
             ctx={'num_retry': 10},
     )

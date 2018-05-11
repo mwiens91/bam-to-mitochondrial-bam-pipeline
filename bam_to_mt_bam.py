@@ -74,9 +74,7 @@ def main():
 
     # Now send all of the blobs down the pipeline
     pyp = pypeliner.app.Pypeline(modules=(bam_to_mt_bam_pipeline,),
-                                 config={'sentinal_only': True,
-                                         'loglevel': 'DEBUG',
-                                         'nocleanup': False,
+                                 config={'loglevel': 'DEBUG',
                                          'submit': 'local',
                                          'maxjobs': NUM_CORES})
 
