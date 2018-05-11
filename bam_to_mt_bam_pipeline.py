@@ -90,6 +90,7 @@ def create_bam_to_mt_bam_pipeline(source_account_name,
                 pypeliner.managed.TempOutputFile(input_blob_name),
                 input_blob_name,
             ),
+            ctx={'num_retry': 10},
     )
 
     # Get the mitochondrial data
@@ -115,6 +116,7 @@ def create_bam_to_mt_bam_pipeline(source_account_name,
                     rename_input_to_output(input_blob_name)),
                 rename_input_to_output(input_blob_name),
             ),
+            ctx={'num_retry': 10},
     )
 
     return workflow
