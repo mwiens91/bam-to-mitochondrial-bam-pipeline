@@ -86,7 +86,7 @@ def create_bam_to_mt_bam_pipeline(source_account_name,
 
     # This is an object needed to use Pypeliner non-sentinal mode, which
     # is based on timestamps
-    workflow.setobj(obj=pypeliner.managed.TempOutputObj('blob_name_obj'),
+    workflow.setobj(obj=pypeliner.managed.TempOutputObj('blob_name_holder'),
                     value=input_blob_name)
 
     # Download the blob
@@ -98,7 +98,7 @@ def create_bam_to_mt_bam_pipeline(source_account_name,
                 source_account_key,
                 source_storage_container_name,
                 pypeliner.managed.TempOutputFile(input_blob_name),
-                pypeliner.managed.TempOutputObj('blob_name_holder'),
+                pypeliner.managed.TempInputObj('blob_name_holder'),
             ),
             ctx={'num_retry': 10},
     )
