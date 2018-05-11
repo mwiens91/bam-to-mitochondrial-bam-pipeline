@@ -2,6 +2,7 @@
 """Main script for bam-to-mitochondrial-bam-pipeline."""
 
 from __future__ import print_function
+import re
 import sys
 import azure.storage.blob
 import pypeliner
@@ -71,7 +72,8 @@ def main():
 
     # Make the blob list a dict to use for the pipeline
     num_blobs = len(blob_list)
-    blob_dict = {blob_list[i]: blob_list[i] for i in range(num_blobs)}
+    blob_dict = {re.sub(r'[/.]', r'_', blob_list[i]): blob_list[i]
+                                            for i in range(num_blobs)}
 
     # Now send all of the blobs down the pipeline
     pyp = pypeliner.app.Pypeline(modules=(bam_to_mt_bam_pipeline,),
