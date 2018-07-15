@@ -11,12 +11,16 @@ This is a script to
 
 ## Usage
 
-**Important**. Fill in and rename `settings.yaml.example` to
+Fill in and rename [`settings.yaml.example`](settings.yaml.example) to
 `settings.yaml`. Also make sure you have Samtools installed
 (http://www.htslib.org/).
 
-The version of `pypeliner` on `pip` is likely outdated, so I recommend
+The version of Pypeliner on pip is likely outdated, so I recommend
 [installing the latest stable version from the Pypeliner
 respository](https://pypeliner.readthedocs.io/en/latest/installation.html).
 
-Once you've done that run the main script with `./bam2MTbam.py`.
+Once you've done that run the main script with
+
+```
+./bam2MTbam.py
+```
