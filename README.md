@@ -9,7 +9,7 @@ This Python script makes use of [Pypeliner](https://bitbucket.org/dranew/pypelin
 - upload those files to an Azure Blob Storage container (possibly the
   same container as used previously, though not necessarily)
 
-## Usage
+## Setup
 
 Fill in and rename [`settings.yaml.example`](settings.yaml.example) to
 `settings.yaml`. Also make sure you have Samtools installed
@@ -17,21 +17,23 @@ Fill in and rename [`settings.yaml.example`](settings.yaml.example) to
 
 The version of Pypeliner on pip is likely outdated, so I recommend
 [installing the latest stable version from the Pypeliner
-respository](https://pypeliner.readthedocs.io/en/latest/installation.html).
+respository](https://pypeliner.readthedocs.io/en/latest/installation.html):
 
-Obtain the latest version of [Pypeliner](https://bitbucket.org/dranew/pypeliner) with
+Clone the Pypeliner source repository with
 
 ```
 git clone https://dranew@bitbucket.org/dranew/pypeliner.git
 ```
 
-In the Pypeliner repository cloned, install using your current version of Python with
+and then go into the Pypeliner repository and install with
 
 ```
-python setup.py install
+cd pypeliner && python setup.py install
 ```
 
-In the directory where you installed bam-to-mitochondrial-bam-pipeline, run the main script with
+## Usage
+
+Run the main script with
 
 ```
 ./bam2MTbam.py
