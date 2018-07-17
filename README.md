@@ -19,10 +19,16 @@ The version of Pypeliner on pip is likely outdated, so I recommend
 [installing the latest stable version from the Pypeliner
 respository](https://pypeliner.readthedocs.io/en/latest/installation.html).
 
-Install the latest version of [Pypeliner](https://bitbucket.org/dranew/pypeliner) with
+Obtain the latest version of [Pypeliner](https://bitbucket.org/dranew/pypeliner) with
 
 ```
-sudo pip3 install pypeliner
+git clone https://dranew@bitbucket.org/dranew/pypeliner.git
+```
+
+To install it with your current version of Python, run
+
+```
+python setup.py install
 ```
 
 Once you've done that run the main script with
