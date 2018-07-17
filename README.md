@@ -1,6 +1,7 @@
 # bam-to-mitochondrial-bam-pipeline
 
-This Python script makes use of [Pypeliner](https://bitbucket.org/dranew/pypeliner) in order to
+This pipeline script uses
+[Pypeliner](https://bitbucket.org/dranew/pypeliner) to
 
 - fetch some BAM files given a list of sequencing chip IDs from an Azure
   Blob Storage container
@@ -12,8 +13,8 @@ This Python script makes use of [Pypeliner](https://bitbucket.org/dranew/pypelin
 ## Setup
 
 Fill in and rename [`settings.yaml.example`](settings.yaml.example) to
-`settings.yaml`. Also make sure you have Samtools installed
-(http://www.htslib.org/).
+`settings.yaml`. Also [make sure you have Samtools
+installed](http://www.htslib.org/).
 
 The version of Pypeliner on pip is likely outdated, so I recommend
 [installing the latest stable version from the Pypeliner
