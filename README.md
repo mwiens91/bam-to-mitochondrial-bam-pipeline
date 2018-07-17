@@ -25,13 +25,13 @@ Obtain the latest version of [Pypeliner](https://bitbucket.org/dranew/pypeliner)
 git clone https://dranew@bitbucket.org/dranew/pypeliner.git
 ```
 
-To install it with your current version of Python, run
+In the Pypeliner repository cloned, install using your current version of Python with
 
 ```
 python setup.py install
 ```
 
-Once you've done that run the main script with
+In the directory where you installed bam-to-mitochondrial-bam-pipeline, run the main script with
 
 ```
 ./bam2MTbam.py
