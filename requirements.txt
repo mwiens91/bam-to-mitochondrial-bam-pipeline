@@ -16,9 +16,9 @@ idna==2.6
 ipaddress==1.0.22
 networkx==2.1
 pycparser==2.18
-pypeliner==0.5.1+52.g66e5dd5
 python-dateutil==2.7.2
 PyYAML==3.12
 requests==2.18.4
 six==1.11.0
 urllib3==1.22
+git+https://bitbucket.org/dranew/pypeliner#egg=Pypeliner

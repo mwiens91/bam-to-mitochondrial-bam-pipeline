@@ -1,7 +1,7 @@
 # bam-to-mitochondrial-bam-pipeline
 
 This pipeline script uses
-[Pypeliner](https://bitbucket.org/dranew/pypeliner) to
+[Pypeliner](https://pypeliner.readthedocs.io/en/latest/) to
 
 - fetch some BAM files given a list of sequencing chip IDs from an Azure
   Blob Storage container
@@ -15,22 +15,6 @@ This pipeline script uses
 Fill in and rename [`settings.yaml.example`](settings.yaml.example) to
 `settings.yaml`. Also [make sure you have Samtools
 installed](http://www.htslib.org/).
-
-The version of Pypeliner on pip is likely outdated, so I recommend
-[installing the latest stable version from the Pypeliner
-respository](https://pypeliner.readthedocs.io/en/latest/installation.html):
-
-Clone the Pypeliner source repository with
-
-```
-git clone https://dranew@bitbucket.org/dranew/pypeliner.git
-```
-
-and then go into the Pypeliner repository and install with
-
-```
-cd pypeliner && python setup.py install
-```
 
 ## Usage
 
