@@ -1,3 +1,5 @@
+![Python version](https://img.shields.io/badge/python-2-blue.svg)
+
 # bam-to-mitochondrial-bam-pipeline
 
 This pipeline script uses
