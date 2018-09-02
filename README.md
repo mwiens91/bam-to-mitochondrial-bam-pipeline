@@ -1,4 +1,4 @@
-![Python version](https://img.shields.io/badge/python-2-blue.svg)
+[![Python version](https://img.shields.io/badge/python-2.7-blue.svg)](https://github.com/mwiens91/bam-to-mitochondrial-bam-pipeline)
 
 # bam-to-mitochondrial-bam-pipeline
 
