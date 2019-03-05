@@ -19,7 +19,7 @@ def main():
     # Get Azure info from settings file
     try:
         with open('settings.yaml', 'r') as settingsfile:
-            settings_dict = yaml.load(settingsfile)
+            settings_dict = yaml.safe_load(settingsfile)
     except IOError:
         # `settings.yaml` not found
         print("Please rename settings.yaml.example to settings.yaml"
